@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">MemForenX</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Results Section -->
+    <section class="analysis-container">
+        <h1 class="analysis-title">Analysis Results</h1>
+        <div class="analysis-result">
+            <pre>{{ output }}</pre>
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('download_report', file=report_file) }}" class="cta-btn" download>Download Report as PDF</a>
+            <a href="/" class="cta-btn">Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Memory Analysis Tool. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

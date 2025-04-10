@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoryXpert - Memory Analysis Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">MemForenX</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/features.html">Features</a></li>
+                <li><a href="#analysis">Analysis</a></li> 
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Analyze Memory Dumps with Ease</h1>
+            <p>Upload your memory dump file and get detailed analysis reports instantly.</p>
+            <a href="#analysis" class="cta-btn">Get Started</a> <!-- Fixed to match ID -->
+        </div>
+        <div class="upload-section" id="analysis"> <!-- Added ID for anchor links -->
+            <div class="upload-box">
+                <h2>Upload Memory Dump</h2>
+                <p>Supported formats: .img, .raw, .dmp, .vmem</p>
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="memory_file" id="memory_file" required>
+                    <button type="submit" class="analyze-btn">Upload and Analyze</button>
+                </form>
+                
+            {% if analysis_output %}
+                <h3>Image Information</h3>
+                <div class="image-info">
+                <pre>{{ analysis_output }}</pre>
+                    </div>
+            {% endif %}
+
+            {% if profiles %}
+                <h3>Select Profile & Plugin</h3>
+                <form action="/analyze" method="post">
+                    <input type="hidden" name="file" value="{{ file }}">
+                    
+                    <label for="profile">Profile:</label>
+                    <select name="profile">
+                        {% for profile in profiles %}
+                        <option value="{{ profile }}">{{ profile }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="plugin">Plugin:</label>
+                    <select name="plugin">
+                        <option value="pslist">pslist</option>
+                        <option value="pstree">pstree</option>
+                        <option value="dlllist">dlllist</option>
+                        <option value="netscan">netscan</option>
+                        <option value="hashdump">hashdump</option>
+                        <option value="connscan">connscan</option>
+                    </select>
+                    
+                    <button type="submit">Run Analysis</button>
+                </form>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2025 MemoryXpert. All rights reserved.</p>
+    </footer>
+</body>
+</html>
