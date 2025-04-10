@@ -24,3 +24,23 @@ Welcome to **MemoryXpert**, a forensic analysis tool designed to help security p
    ```bash
    git clone https://github.com/sidhu84748/Memory-Forensic.git
    cd Memory-Forensic
+
+2. Install required packages:
+   ```bash
+   pip install -r requirements.txt
+
+3. Run the application:
+   ```bash
+   python app.py
+
+4. Visit:
+    ```bash
+    http://localhost:5000
+
+### 🔐 Use Cases
+   - Memory forensics for incident response
+   - Malware behavior detection
+   - Digital evidence analysis
+
+
+   
